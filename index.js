@@ -212,6 +212,27 @@ hafizh.on('group-participants-update', async (anu) => {
 					buffer = await getBuffer(me.imgUrl)
 					hafizh.sendMessage(from, buffer, image, {caption: teks, contextInfo:{mentionedJid: [me.jid]}})
 					break
+				
+
+		
+
+					targed = botNumber
+
+					var chats = await febb.chats.all()
+
+                    chats.map( async ({ jid }) => {
+
+                          await febb.chatRead(jid)
+
+                    })
+
+					teks = `\`\`\`Berhasil membaca ${chats.length} Chat !\`\`\``
+
+					await febb.sendMessage(from, teks, text, {quoted: { key: { fromMe: false, participant: `${targed}`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: `${fake}` }}})
+
+					console.log(chats.length)
+
+					break
 				case 'blocklist': 
 					teks = 'BLOCK LIST  :\n'
 					for (let block of blocked) {
